@@ -1,0 +1,9 @@
+redis:
+  addresses: ["127.0.0.1:6379"]
+
+service:
+  http_port: 2003
+
+
+mongodb:
+  addresses: "localhost"
