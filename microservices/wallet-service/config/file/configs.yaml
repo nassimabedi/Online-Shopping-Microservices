@@ -1,0 +1,11 @@
+redis:
+  addresses: ["localhost:6379"]
+
+service:
+  http_port: 2002
+
+
+mongodb:
+  addresses: "localhost"
+
+
