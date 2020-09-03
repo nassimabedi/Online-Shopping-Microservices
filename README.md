@@ -72,8 +72,9 @@ to run worker to get real time users go to `console` and run
 we have multiple http route :
 
 - `v1/discounts/discounts` `POST`: api for create discount ( enter the new discount code)
+- `v1/discounts/win/user` `GET`: api for get a list of real time winning users
 - `v1/wallet/info/{phone_number}` `GET`: api for get a wallet information
-- `v1/wallet/win/user` `GET`: api for get a list of real time winning users
+
 
 
 

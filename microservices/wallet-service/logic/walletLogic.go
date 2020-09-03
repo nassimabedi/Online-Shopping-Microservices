@@ -11,7 +11,6 @@ import (
 type CreateWalletInterface interface {
 	CreateNewCredit(PhoneNumber string, credit int) (*domain.WalletInfo, error)
 	WalletInfo(PhoneNumber string) (*domain.WalletInfo, error)
-	WinningUser() ([]string, error)
 }
 
 // CreateWalletLogic struct
@@ -58,21 +57,6 @@ func (c *CreateWalletLogic) WalletInfo(PhoneNumber string) (*domain.WalletInfo, 
 	}
 
 	result, err := c.CreateWalletRepo.GetWalletInfo(PhoneNumber)
-	if err != nil {
-		return nil, err
-	}
-
-	return result, nil
-}
-
-//Get customer Wallet info by phone number
-func (c *CreateWalletLogic) WinningUser() ([]string, error) {
-
-	if c.CreateWalletRepo == nil {
-		c.CreateQueueRepo = repository.NewQueueRepo(c.Context)
-	}
-
-	result, err := c.CreateQueueRepo.GetWinningUsers()
 	if err != nil {
 		return nil, err
 	}

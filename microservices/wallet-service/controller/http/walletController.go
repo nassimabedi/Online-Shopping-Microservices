@@ -10,7 +10,6 @@ import (
 // WalletControllerInterface
 type WalletControllerInterface interface {
 	WalletInfo(c *gin.Context)
-	WinningUser(c *gin.Context)
 }
 
 //WalletControllerStruct
@@ -39,19 +38,4 @@ func (d *WalletControllerStruct) WalletInfo(c *gin.Context) {
 		result,
 	)
 	return
-}
-
-//get winning users
-func (d *WalletControllerStruct) WinningUser(c *gin.Context) {
-	result, err := logic.NewCreateWallet(c).WinningUser()
-	if err != nil {
-		errorsHandler.GinErrorResponseHandler(c, err)
-		return
-	}
-
-	c.JSON(http.StatusCreated,
-		result,
-	)
-	return
-
 }

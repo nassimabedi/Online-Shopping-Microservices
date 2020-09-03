@@ -11,7 +11,6 @@ import (
 type QueueRepoInterface interface {
 	PopUserFromQueue() (string, error)
 	InsertForRealTime(user string) (int64, error)
-	GetWinningUsers() ([]string, error)
 }
 
 // QueueRepo
@@ -54,22 +53,6 @@ func (q QueueRepo) InsertForRealTime(user string) (int64, error) {
 			return 0, nil
 		}
 		return 0, err
-	}
-	return result, nil
-}
-
-//insert into hash for get real time user
-func (q QueueRepo) GetWinningUsers() ([]string, error) {
-	var result []string
-
-	result, err := DBS.Redis.LRange(constant.RealTimeKey, constant.WinningUserStart, constant.WinningUserEnd).Result()
-
-	if err != nil {
-		if err == redis.Nil {
-			logger.ZSLogger.Errorf("error on push  to hash for winngin users with error :%s", err)
-			return result, nil
-		}
-		return result, err
 	}
 	return result, nil
 }

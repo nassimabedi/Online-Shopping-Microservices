@@ -12,6 +12,7 @@ import (
 type CreateDiscountInterface interface {
 	CreateDiscount(Discount domain.DiscountInfo) (*domain.DiscountInfo, error)
 	InsertRedisDiscount(Discount domain.DiscountInfo) (*domain.DiscountInfo, error)
+	GetWinningUsers() ([]string, error)
 }
 
 // CreateDiscountRepo struct
@@ -51,4 +52,20 @@ func (c *CreateDiscountRepo) InsertRedisDiscount(Discount domain.DiscountInfo) (
 
 	return &Discount, nil
 
+}
+
+//insert into hash for get real time user
+func (q *CreateDiscountRepo) GetWinningUsers() ([]string, error) {
+	var result []string
+
+	result, err := DBS.Redis.LRange(constant.RealTimeKey, constant.WinningUserStart, constant.WinningUserEnd).Result()
+
+	if err != nil {
+		if err == redis.Nil {
+			logger.ZSLogger.Errorf("error on push  to hash for winning users with error :%s", err)
+			return result, nil
+		}
+		return result, err
+	}
+	return result, nil
 }

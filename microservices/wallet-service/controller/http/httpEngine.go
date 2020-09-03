@@ -12,7 +12,6 @@ func Run(Port string) {
 	walletController := NewWalletController()
 	{
 		v1.GET("/info/:phone_number", walletController.WalletInfo)
-		v1.GET("/win/user", walletController.WinningUser)
 
 	}
 

@@ -12,6 +12,7 @@ func Run(Port string) {
 	discountController := NewDiscountController()
 	{
 		v1.POST("/discounts", discountController.NewDiscount)
+		v1.GET("/win/user", discountController.WinningUser)
 
 	}
 

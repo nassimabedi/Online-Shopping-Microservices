@@ -10,6 +10,7 @@ import (
 // CreateDiscountInterface
 type CreateDiscountInterface interface {
 	CreateNewDiscount(PhoneNumber string, DiscountNumber string) (*domain.DiscountInfo, error)
+	WinningUser() ([]string, error)
 }
 
 // CreateDiscountLogic struct
@@ -53,5 +54,20 @@ func (c *CreateDiscountLogic) CreateNewDiscount(PhoneNumber string, DiscountNumb
 	if err != nil {
 		return nil, err
 	}
+	return result, nil
+}
+
+//Get customer Wallet info by phone number
+func (c *CreateDiscountLogic) WinningUser() ([]string, error) {
+
+	if c.CreateDiscountRepo == nil {
+		c.CreateDiscountRepo = repository.NewCreateDiscount(c.Context)
+	}
+
+	result, err := c.CreateDiscountRepo.GetWinningUsers()
+	if err != nil {
+		return nil, err
+	}
+
 	return result, nil
 }

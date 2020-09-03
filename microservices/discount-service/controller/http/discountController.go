@@ -11,6 +11,7 @@ import (
 // DiscountControllerInterface
 type DiscountControllerInterface interface {
 	NewDiscount(c *gin.Context)
+	WinningUser(c *gin.Context)
 }
 
 //
@@ -46,4 +47,19 @@ func (d *DiscountControllerStruct) NewDiscount(c *gin.Context) {
 		result,
 	)
 	return
+}
+
+//get winning users
+func (d *DiscountControllerStruct) WinningUser(c *gin.Context) {
+	result, err := logic.NewCreateDiscount(c).WinningUser()
+	if err != nil {
+		errorsHandler.GinErrorResponseHandler(c, err)
+		return
+	}
+
+	c.JSON(http.StatusCreated,
+		result,
+	)
+	return
+
 }
