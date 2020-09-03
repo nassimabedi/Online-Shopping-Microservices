@@ -15,7 +15,7 @@ limitations under the License.
 */
 package main
 
-import "arvan.ir/app-services/discount-service/console/cmd"
+import "Online-Shopping-Microservices/microservices/discount-service/console/cmd"
 
 func init() {
 

@@ -1,9 +1,9 @@
 package cmd
 
 import (
-	"arvan.ir/app-services/wallet-service/constant"
-	"arvan.ir/app-services/wallet-service/logic"
-	"arvan.ir/app-services/wallet-service/repository"
+	"Online-Shopping-Microservices/microservices/wallet-service/constant"
+	"Online-Shopping-Microservices/microservices/wallet-service/logic"
+	"Online-Shopping-Microservices/microservices/wallet-service/repository"
 	"context"
 	"fmt"
 	"github.com/spf13/cobra"
@@ -19,7 +19,6 @@ var GetUser = &cobra.Command{
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },
 	Run: func(cmd *cobra.Command, args []string) {
-
 
 		ctx := context.Background()
 		RepoQueue := repository.NewQueueRepo(ctx)
@@ -41,7 +40,6 @@ var GetUser = &cobra.Command{
 				fmt.Printf("error on insert credit logic wit error :%v \n", err)
 				continue
 			}
-
 
 			time.Sleep(2 * time.Second)
 

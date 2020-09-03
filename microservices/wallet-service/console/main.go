@@ -16,12 +16,11 @@ limitations under the License.
 package main
 
 import (
-	"arvan.ir/app-services/wallet-service/config"
-	"arvan.ir/app-services/wallet-service/console/cmd"
-	"arvan.ir/app-services/wallet-service/repository"
+	"Online-Shopping-Microservices/microservices/wallet-service/config"
+	"Online-Shopping-Microservices/microservices/wallet-service/console/cmd"
+	"Online-Shopping-Microservices/microservices/wallet-service/repository"
 	"flag"
 )
-
 
 func init() {
 	configFlag := flag.String("config", "dev", "config flag can be dev for develop or prod for production")

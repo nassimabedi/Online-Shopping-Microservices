@@ -1,10 +1,11 @@
-module arvan.ir/app-services/discount-service
+module Online-Shopping-Microservices/microservices/discount-service
 
 go 1.14
 
 require (
+	github.com/RezaOptic/go-utils v0.0.0-20200827144908-8ea4694ba6ad
 	github.com/couchbase/gocb/v2 v2.1.0
-	github.com/gin-gonic/gin v1.6.2
+	github.com/gin-gonic/gin v1.6.3
 	github.com/go-redis/redis/v7 v7.2.0
 	github.com/google/uuid v1.1.1
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.0

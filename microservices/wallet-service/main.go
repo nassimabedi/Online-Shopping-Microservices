@@ -1,9 +1,9 @@
 package main
 
 import (
-	"arvan.ir/app-services/wallet-service/config"
-	httpEngine "arvan.ir/app-services/wallet-service/controller/http"
-	"arvan.ir/app-services/wallet-service/repository"
+	"Online-Shopping-Microservices/microservices/wallet-service/config"
+	httpEngine "Online-Shopping-Microservices/microservices/wallet-service/controller/http"
+	"Online-Shopping-Microservices/microservices/wallet-service/repository"
 	"flag"
 	"sync"
 )

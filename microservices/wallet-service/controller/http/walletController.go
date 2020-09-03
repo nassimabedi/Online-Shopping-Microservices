@@ -1,8 +1,8 @@
 package httpEngine
 
 import (
-	"arvan.ir/app-services/wallet-service/logic"
-	"fmt"
+	"Online-Shopping-Microservices/microservices/wallet-service/logic"
+	"github.com/RezaOptic/go-utils/errorsHandler"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -31,7 +31,7 @@ func (d *WalletControllerStruct) WalletInfo(c *gin.Context) {
 
 	result, err := logic.NewCreateWallet(c).WalletInfo(phoneNumber)
 	if err != nil {
-		fmt.Printf("error %v \n", err)
+		errorsHandler.GinErrorResponseHandler(c, err)
 		return
 	}
 
@@ -45,7 +45,7 @@ func (d *WalletControllerStruct) WalletInfo(c *gin.Context) {
 func (d *WalletControllerStruct) WinningUser(c *gin.Context) {
 	result, err := logic.NewCreateWallet(c).WinningUser()
 	if err != nil {
-		fmt.Printf("%+v\n", err)
+		errorsHandler.GinErrorResponseHandler(c, err)
 		return
 	}
 

@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"arvan.ir/app-services/wallet-service/config"
+	"Online-Shopping-Microservices/microservices/wallet-service/config"
 	"fmt"
 	"github.com/go-redis/redis/v7"
 	mgo "gopkg.in/mgo.v2"

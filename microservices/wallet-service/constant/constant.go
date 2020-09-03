@@ -4,7 +4,7 @@ package constant
 const (
 	UsersKey                = `users`
 	RealTimeKey             = `monitoring_realtime`
-	DBMongoName             = `arvan`
+	DBMongoName             = `shopping`
 	WalletDocument          = `wallet`
 	InternalError           = "internal error occur"
 	InsertWalletError       = "error in insert wallet"

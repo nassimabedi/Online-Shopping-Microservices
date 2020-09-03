@@ -1,8 +1,8 @@
 package logic
 
 import (
-	"arvan.ir/app-services/wallet-service/domain"
-	"arvan.ir/app-services/wallet-service/repository"
+	"Online-Shopping-Microservices/microservices/wallet-service/domain"
+	"Online-Shopping-Microservices/microservices/wallet-service/repository"
 	"context"
 	"time"
 )

@@ -1,23 +1,22 @@
 package logic
 
 import (
+	"Online-Shopping-Microservices/microservices/discount-service/domain"
+	"Online-Shopping-Microservices/microservices/discount-service/repository"
 	"context"
-	"arvan.ir/app-services/discount-service/domain"
-	"arvan.ir/app-services/discount-service/repository"
 	"time"
 )
 
 // CreateDiscountInterface
 type CreateDiscountInterface interface {
 	CreateNewDiscount(PhoneNumber string, DiscountNumber string) (*domain.DiscountInfo, error)
-
 }
 
 // CreateDiscountLogic struct
 type CreateDiscountLogic struct {
-	Context      context.Context
-	Self         CreateDiscountInterface
-	PublishLogic PublishInterface
+	Context            context.Context
+	Self               CreateDiscountInterface
+	PublishLogic       PublishInterface
 	CreateDiscountRepo repository.CreateDiscountInterface
 }
 
@@ -36,7 +35,6 @@ func (c *CreateDiscountLogic) CreateNewDiscount(PhoneNumber string, DiscountNumb
 	}
 
 	var Discount domain.DiscountInfo
-
 
 	Discount.Number = DiscountNumber
 	Discount.PhoneNumber = PhoneNumber
@@ -57,4 +55,3 @@ func (c *CreateDiscountLogic) CreateNewDiscount(PhoneNumber string, DiscountNumb
 	}
 	return result, nil
 }
-

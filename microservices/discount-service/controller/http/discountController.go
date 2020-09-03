@@ -1,9 +1,9 @@
 package httpEngine
 
 import (
-	"arvan.ir/app-services/discount-service/domain"
-	"arvan.ir/app-services/discount-service/logic"
-	"fmt"
+	"Online-Shopping-Microservices/microservices/discount-service/domain"
+	"Online-Shopping-Microservices/microservices/discount-service/logic"
+	"github.com/RezaOptic/go-utils/errorsHandler"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -29,7 +29,7 @@ func NewDiscountController() DiscountControllerInterface {
 func (d *DiscountControllerStruct) NewDiscount(c *gin.Context) {
 	var discountInfo domain.DiscountInfo
 	if err := c.Bind(&discountInfo); err != nil {
-		fmt.Printf("%v \n", err)
+		errorsHandler.GinErrorResponseHandler(c, err)
 		return
 	}
 
@@ -38,7 +38,7 @@ func (d *DiscountControllerStruct) NewDiscount(c *gin.Context) {
 
 	result, err := logic.NewCreateDiscount(c).CreateNewDiscount(phoneNumber, discountNumber)
 	if err != nil {
-		fmt.Printf("%v \n", err)
+		errorsHandler.GinErrorResponseHandler(c, err)
 		return
 	}
 

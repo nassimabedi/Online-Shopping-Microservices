@@ -1,4 +1,4 @@
-module arvan.ir/app-services/wallet-service
+module Online-Shopping-Microservices/microservices/wallet-service
 
 go 1.14
 

@@ -1,9 +1,9 @@
 package repository
 
 import (
-	"arvan.ir/app-services/wallet-service/constant"
+	"Online-Shopping-Microservices/microservices/wallet-service/constant"
 	"context"
-	"fmt"
+	"github.com/RezaOptic/go-utils/logger"
 	"github.com/go-redis/redis/v7"
 )
 
@@ -30,14 +30,14 @@ func NewQueueRepo(ctx context.Context) QueueRepoInterface {
 // PopUserFromQueue method for pop users from redis queue
 func (q QueueRepo) PopUserFromQueue() (string, error) {
 
-	//result,err := DBS.Redis.RPop(constant.UsersKey).Result()
 	result, err := DBS.Redis.LPop(constant.UsersKey).Result()
 
 	if err != nil {
 		if err == redis.Nil {
+			logger.ZSLogger.Errorf("error on pop from user queue with error :%s", err)
 			return "", nil
+
 		}
-		fmt.Printf("error on pop from user queue with error :%v \n", err)
 		return "", err
 	}
 	return result, nil
@@ -50,9 +50,9 @@ func (q QueueRepo) InsertForRealTime(user string) (int64, error) {
 
 	if err != nil {
 		if err == redis.Nil {
+			logger.ZSLogger.Errorf("error on push  to hash for monitoring with error :%s", err)
 			return 0, nil
 		}
-		fmt.Printf("error on push  to hash for monitoring with error :%v \n", err)
 		return 0, err
 	}
 	return result, nil
@@ -66,9 +66,9 @@ func (q QueueRepo) GetWinningUsers() ([]string, error) {
 
 	if err != nil {
 		if err == redis.Nil {
+			logger.ZSLogger.Errorf("error on push  to hash for winngin users with error :%s", err)
 			return result, nil
 		}
-		fmt.Printf("error on push  to hash for winngin users with error :%v \n", err)
 		return result, err
 	}
 	return result, nil

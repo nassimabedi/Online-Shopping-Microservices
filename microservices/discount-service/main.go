@@ -3,10 +3,10 @@ package main
 import (
 	"flag"
 
-	"arvan.ir/app-services/discount-service/config"
+	"Online-Shopping-Microservices/microservices/discount-service/config"
 
-	httpEngine "arvan.ir/app-services/discount-service/controller/http"
-	"arvan.ir/app-services/discount-service/repository"
+	httpEngine "Online-Shopping-Microservices/microservices/discount-service/controller/http"
+	"Online-Shopping-Microservices/microservices/discount-service/repository"
 	"sync"
 )
 

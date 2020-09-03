@@ -1,11 +1,11 @@
 package repository
 
 import (
-	"arvan.ir/app-services/wallet-service/constant"
-	"arvan.ir/app-services/wallet-service/domain"
+	"Online-Shopping-Microservices/microservices/wallet-service/constant"
+	"Online-Shopping-Microservices/microservices/wallet-service/domain"
 	"context"
 	"errors"
-	"fmt"
+	"github.com/RezaOptic/go-utils/logger"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -31,8 +31,7 @@ func NewWalletRepo(ctx context.Context) WalletRepoInterface {
 func (q WalletRepo) AddCredit(wallet domain.WalletInfo) (*domain.WalletInfo, error) {
 	err := DBS.MongoDB.DB(constant.DBMongoName).C(constant.WalletDocument).Insert(wallet)
 	if err != nil {
-
-		fmt.Printf("error on insert wallet with error :%v \n", err)
+		logger.ZSLogger.Errorf("error on insert wallet with error :%s", err)
 		return nil, errors.New(constant.InsertWalletError)
 	}
 
@@ -45,7 +44,7 @@ func (q WalletRepo) GetWalletInfo(PhoneNumber string) (*domain.WalletInfo, error
 
 	err := DBS.MongoDB.DB(constant.DBMongoName).C(constant.WalletDocument).Find(bson.M{"phone_number": PhoneNumber}).One(&walletInfo)
 	if err != nil {
-		fmt.Printf("error on insert wallet with error :%v \n", err)
+		logger.ZSLogger.Errorf("error on insert wallet with error :%s", err)
 		return nil, errors.New(constant.InsertWalletError)
 	}
 

@@ -1,11 +1,11 @@
 package repository
 
 import (
-	"arvan.ir/app-services/discount-service/constant"
-	"arvan.ir/app-services/discount-service/domain"
+	"Online-Shopping-Microservices/microservices/discount-service/constant"
+	"Online-Shopping-Microservices/microservices/discount-service/domain"
 	"context"
 	"errors"
-	"fmt"
+	"github.com/RezaOptic/go-utils/logger"
 )
 
 // CreateDiscountInterface
@@ -32,7 +32,7 @@ func (c *CreateDiscountRepo) CreateDiscount(Discount domain.DiscountInfo) (*doma
 
 	err := DBS.MongoDB.DB(constant.DBMongoName).C(constant.DiscountDocument).Insert(Discount)
 	if err != nil {
-		fmt.Printf("error on insert discount with error :%s", err)
+		logger.ZSLogger.Errorf("error on insert discount with error :%s", err)
 		return nil, errors.New(constant.InsertDiscountError)
 	}
 
@@ -45,7 +45,7 @@ func (c *CreateDiscountRepo) InsertRedisDiscount(Discount domain.DiscountInfo) (
 	_, err := DBS.Redis.RPush(constant.UsersKey, Discount.PhoneNumber).Result()
 
 	if err != nil {
-		fmt.Printf("error on insert discount with error in redis :%v \n", err)
+		logger.ZSLogger.Errorf("error on insert discount with error in redis :%s", err)
 		return nil, errors.New(constant.InsertDiscountError)
 	}
 
